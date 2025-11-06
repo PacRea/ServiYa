@@ -1,0 +1,19 @@
+const [tipo, setTipo] = useState("");
+const tipoProveedor = () => {
+    setTipo("proveedor");
+    alert(tipo);
+  };
+  const tipoCliente = () => {
+    setTipo("cliente");
+    alert(tipo);
+  };
+  return(
+    <div className="btn btn-tipo">
+        <button className="btn tipo-choose" onClick={tipoCliente}>
+          Usuario
+        </button>
+        <button className="btn tipo-choose" onClick={tipoProveedor}>
+          Proveedor
+        </button>
+      </div>
+  );

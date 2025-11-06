@@ -5,17 +5,26 @@ import LoginPage from "./pages/LoginPage";
 import MostrarServ from "./pages/MostrarServicios";
 
 function App() {
- 
-  const userLogged = false;
+  const [userLogged, setUserLogged] = useState(false);
+
+  const usuarioLogeado = () => {
+    setUserLogged(true);
+  };
   return (
     <div>
+      <header className="header">
+        <div className="titulo-header">
+          <h1>Servi-Ya</h1>
+        </div>
+        {!userLogged && <LoginPage userLog={usuarioLogeado}></LoginPage>}
+        {userLogged && (
+          <div>
+            <h2>Hola</h2>
+          </div>
+        )}
+      </header>
 
-    <header>
-      <LoginPage></LoginPage>
-    </header>
-    
       <MostrarServ></MostrarServ>
-    
     </div>
   );
 }

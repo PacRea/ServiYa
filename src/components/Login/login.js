@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import "../../App.css";
 
-
-function Login({ alCerrarLogin }) {
+function Login({ alCerrarLogin, userLogin }) {
   const url = "http://serviya.local/api/login.php";
   const [correoCliente, setCorreoCliente] = useState("");
   const [passCliente, setPassCliente] = useState("");
@@ -30,10 +30,12 @@ function Login({ alCerrarLogin }) {
         localStorage.setItem("usuario", JSON.stringify(data));
         setCorreoCliente("");
         setPassCliente("");
-        console.log("Sesion iniciada con caca");
-        //alCerrarLogin();
+        alert("Sesion Iniciada con exito");
+        userLogin();
+        alCerrarLogin();
       } else {
         setError(data.mensaje || "Correo o contraseña incorrectos");
+        alert("correo y/o contraseña incorrecta");
       }
     } catch (err) {
       setError(err);
@@ -41,39 +43,41 @@ function Login({ alCerrarLogin }) {
   };
 
   return (
-    <div>
-      <form onSubmit={validacion}>
-        <div>
-          <label>Correo</label>
-          <input
-            type="text"
-            className="inputs"
-            placeholder="Correo"
-            id="correo"
-            value={correoCliente}
-            onChange={(e) => setCorreoCliente(e.target.value)}
-            required
-          />
-        </div>
+    <div className="modal">
+      <div className="contenido-modal form">
+        <form onSubmit={validacion} >
+          <div>
+            <label>Correo</label>
+            <input
+              type="text"
+              className="inputs"
+              placeholder="Correo"
+              id="correo"
+              value={correoCliente}
+              onChange={(e) => setCorreoCliente(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <label>Contraseña</label>
-          <input
-            type="password"
-            className="inputs"
-            placeholder="Contraseña"
-            id="password"
-            value={passCliente}
-            onChange={(e) => setPassCliente(e.target.value)}
-            required
-          />
-        </div>
+          <div>
+            <label>Contraseña</label>
+            <input
+              type="password"
+              className="inputs"
+              placeholder="Contraseña"
+              id="password"
+              value={passCliente}
+              onChange={(e) => setPassCliente(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <button type="submit">Iniciar Sesión</button>
-        </div>
-      </form>
-      <button onClick={alCerrarLogin}>Cerrar</button>
+          <div>
+            <button className="btn" type="submit">Iniciar Sesión</button>
+          </div>
+        </form>
+        <button className="btn" onClick={alCerrarLogin}>Cerrar</button>
+      </div>
     </div>
   );
 }

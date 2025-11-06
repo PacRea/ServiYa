@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ServIndv from "./ServIndv";
+import "../../App.css";
 
 function ShowServicios() {
   const [showServ, setShowServ] = useState([]);
@@ -23,6 +24,7 @@ function ShowServicios() {
       .then((data) => setShowServ(data))
       .catch((err) => console.error("Error al obtener servicios", err));
   }, []);
+  //
 
   const setValores = (
     idprov,
@@ -65,7 +67,7 @@ function ShowServicios() {
             <p>{p.direccion}</p>
             <p>{p.telefono}</p>
             <p>{p.precio}</p>
-            <button
+            <button className="btn"
               onClick={() => {
                 setValores(
                   p.id_proveedor,
