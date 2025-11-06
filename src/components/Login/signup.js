@@ -21,6 +21,19 @@ function SignUp({ alCerrar }) {
     ciudadCliente,
     dirCliente,
   ];
+  const btnActivo = (tipo) => {
+    if (tipo === "cliente") {
+      const boton = document.querySelector(".cliente-btn");
+      boton.classList.add("btn-activo");
+      const botonOtro = document.querySelector(".proveedor-btn");
+      botonOtro.classList.remove("btn-activo");
+    } else {
+      const boton = document.querySelector(".proveedor-btn");
+      boton.classList.add("btn-activo");
+      const botonOtro = document.querySelector(".cliente-btn");
+      botonOtro.classList.remove("btn-activo");
+    }
+  };
   const crearCuenta = async (e) => {
     e.preventDefault();
     setError("");
@@ -75,24 +88,29 @@ function SignUp({ alCerrar }) {
   };
   const tipoProveedor = () => {
     setTipo("proveedor");
+    btnActivo("proveedor");
   };
   const tipoCliente = () => {
     setTipo("cliente");
+    btnActivo("cliente");
   };
   return (
     <div className="modal">
       <div className="contenido-modal form">
-        <div className="btn btn-tipo">
-          <button className="btn tipo-choose" onClick={tipoCliente}>
+        <div className="btn-tipo">
+          <button className="btn tipo-choose cliente-btn" onClick={tipoCliente}>
             Usuario
           </button>
-          <button className="btn tipo-choose" onClick={tipoProveedor}>
+          <button
+            className="btn tipo-choose proveedor-btn"
+            onClick={tipoProveedor}
+          >
             Proveedor
           </button>
         </div>
         <form className="formulario">
-          <div>
-            <label>Nombre Completo</label>
+          <div className="form-datos">
+            <label className="label">Nombre Completo</label>
             <input
               type="text"
               className="inputs"
@@ -103,8 +121,8 @@ function SignUp({ alCerrar }) {
             />
           </div>
 
-          <div>
-            <label>Fecha de Nacimiento</label>
+          <div className="form-datos">
+            <label className="label">Fecha de Nacimiento</label>
             <input
               type="date"
               className="inputs"
@@ -115,8 +133,8 @@ function SignUp({ alCerrar }) {
             />
           </div>
 
-          <div>
-            <label>Correo</label>
+          <div className="form-datos">
+            <label className="label">Correo</label>
             <input
               type="text"
               className="inputs"
@@ -127,8 +145,8 @@ function SignUp({ alCerrar }) {
             />
           </div>
 
-          <div>
-            <label>Contraseña</label>
+          <div className="form-datos">
+            <label className="label">Contraseña</label>
             <input
               type="password"
               className="inputs"
@@ -139,8 +157,8 @@ function SignUp({ alCerrar }) {
             />
           </div>
 
-          <div>
-            <label>Telefono</label>
+          <div className="form-datos">
+            <label className="label">Telefono</label>
             <input
               type="number"
               className="inputs"
@@ -151,8 +169,8 @@ function SignUp({ alCerrar }) {
             />
           </div>
 
-          <div>
-            <label>Ciudad</label>
+          <div className="form-datos">
+            <label className="label">Ciudad</label>
             <input
               type="text"
               className="inputs"
@@ -163,8 +181,8 @@ function SignUp({ alCerrar }) {
             />
           </div>
 
-          <div>
-            <label>Dirección</label>
+          <div className="form-datos">
+            <label className="label">Dirección</label>
             <input
               type="text"
               className="inputs"
@@ -174,10 +192,17 @@ function SignUp({ alCerrar }) {
               onChange={(e) => setDirCliente(e.target.value)}
             />
           </div>
-
-          <button onClick={crearCuenta}>Crear Cuenta</button>
+          <div className="crear-contenedor">
+            <button className="btn crear-sign-btn" onClick={crearCuenta}>
+              Crear Cuenta
+            </button>
+          </div>
         </form>
-        <button onClick={alCerrar}>Cerrar</button>
+        <div className="close-btn-contenedor">
+          <button className="btn close-sign-btn" onClick={alCerrar}>
+            Cerrar
+          </button>
+        </div>
       </div>
     </div>
   );

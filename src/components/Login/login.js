@@ -44,9 +44,10 @@ function Login({ alCerrarLogin, userLogin }) {
 
   return (
     <div className="modal">
-      <div className="contenido-modal form">
-        <form onSubmit={validacion} >
-          <div>
+      <div className="contenido-modal form form-login">
+        <form className="contenido-form" onSubmit={validacion}>
+          <div className="input-div">
+            <div className="titulo-login"><h2>Ingrese sus datos</h2></div>
             <label>Correo</label>
             <input
               type="text"
@@ -59,7 +60,7 @@ function Login({ alCerrarLogin, userLogin }) {
             />
           </div>
 
-          <div>
+          <div className="input-div">
             <label>Contraseña</label>
             <input
               type="password"
@@ -73,10 +74,16 @@ function Login({ alCerrarLogin, userLogin }) {
           </div>
 
           <div>
-            <button className="btn" type="submit">Iniciar Sesión</button>
+            <button className="btn" type="submit">
+              Iniciar Sesión
+            </button>
           </div>
         </form>
-        <button className="btn" onClick={alCerrarLogin}>Cerrar</button>
+        <div className="login-close">
+          <button className="btn" onClick={alCerrarLogin}>
+            Cerrar
+          </button>
+        </div>
       </div>
     </div>
   );
