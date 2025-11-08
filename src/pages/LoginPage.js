@@ -4,7 +4,7 @@ import Login from "../components/Login/login.js";
 import SignUp from "../components/Login/signup.js";
 import "../App.css";
 
-function LoginPage({ userLog }) {
+function LoginPage({ userLog, usuario }) {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
 
@@ -33,7 +33,7 @@ function LoginPage({ userLog }) {
       <div></div>
       {showLogin && (
         <div>
-          <Login alCerrarLogin={cerrarLogin} userLogin={userLog} />
+          <Login alCerrarLogin={cerrarLogin} userLogin={userLog} usuarioDatos={usuario}/>
         </div>
       )}
       {showSignUp && <SignUp alCerrar={cerrarSignUp} />}

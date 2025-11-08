@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../App.css";
 
-function Login({ alCerrarLogin, userLogin }) {
+function Login({ alCerrarLogin, userLogin, usuarioDatos }) {
   const url = "http://serviya.local/api/login.php";
   const [correoCliente, setCorreoCliente] = useState("");
   const [passCliente, setPassCliente] = useState("");
@@ -27,7 +27,8 @@ function Login({ alCerrarLogin, userLogin }) {
       }
 
       if (data.status === "ok") {
-        localStorage.setItem("usuario", JSON.stringify(data));
+        const datosCliente = data;
+        usuarioDatos(datosCliente);
         setCorreoCliente("");
         setPassCliente("");
         alert("Sesion Iniciada con exito");

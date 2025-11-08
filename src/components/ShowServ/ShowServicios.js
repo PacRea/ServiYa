@@ -16,16 +16,14 @@ function ShowServicios() {
   const [precio, setPrecio] = useState("");
   const [showBig, setShowBig] = useState(false);
   const [showThis, setShowThis] = useState(true);
-  const url = "http://serviya.local/api/";
+  const url = "http://serviya.local/api";
 
   useEffect(() => {
-    fetch(url + "consultar_servicios.php")
+    fetch(url + "/consultar_servicios.php")
       .then((res) => res.json())
       .then((data) => setShowServ(data))
       .catch((err) => console.error("Error al obtener servicios", err));
   }, []);
-  //
-
   const setValores = (
     idprov,
     nombre,
