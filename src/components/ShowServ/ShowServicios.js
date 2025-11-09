@@ -55,39 +55,41 @@ function ShowServicios() {
   return (
     <div className="servicios-principal">
       <h2 className="titulo-servicios">Checa que necesitas</h2>
-      {showThis && showServ.map((p) => (
-        <div className="servicios-datos" key={p.id_servicio}>
-          <div className="header-servicios">
-            <h3 className="titulo-servicio">{p.nombre_servicio}</h3>
-            <p>{p.descripcion}</p>
-            <p>{p.categoria}</p>
-            <p>{p.ciudad}</p>
-            <p>{p.direccion}</p>
-            <p>{p.telefono}</p>
-            <p>{p.precio}</p>
-            <button className="btn"
-              onClick={() => {
-                setValores(
-                  p.id_proveedor,
-                  p.nombre_servicio,
-                  p.ciudad,
-                  p.direccion,
-                  p.telefono,
-                  p.id_servicio,
-                  p.nombre_servicio,
-                  p.descripcion,
-                  p.categoria,
-                  p.precio
-                );
-                mostrarInd();
-                oculLista();
-              }}
-            >
-              Ver mas
-            </button>
+      {showThis &&
+        showServ.map((p) => (
+          <div className="servicios-datos" key={p.id_servicio}>
+            <div className="header-servicios">
+              <h3 className="titulo-servicio">{p.nombre_servicio}</h3>
+              <p>{p.descripcion}</p>
+              <p>{p.categoria}</p>
+              <p>{p.ciudad}</p>
+              <p>{p.direccion}</p>
+              <p>{p.telefono}</p>
+              <p>{p.precio}</p>
+              <button
+                className="btn"
+                onClick={() => {
+                  setValores(
+                    p.id_proveedor,
+                    p.nombre_servicio,
+                    p.ciudad,
+                    p.direccion,
+                    p.telefono,
+                    p.id_servicio,
+                    p.nombre_servicio,
+                    p.descripcion,
+                    p.categoria,
+                    p.precio
+                  );
+                  mostrarInd();
+                  //oculLista();
+                }}
+              >
+                Ver mas
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
       {showBig && (
         <ServIndv
           id_prov={idProv}

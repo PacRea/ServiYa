@@ -167,3 +167,18 @@ body {
     text-align: center;
     margin: 0;
 }
+.indiv-serv{
+  display: flex;
+  background-color: var(--cuarto);
+  padding: 2rem;
+  border-radius: 1rem;
+  color: var(--primario);
+}
+.serv-datos{
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+}
+.btn-idv{
+  background-color: var(--tercero);
+  color: #FFF;
+}
