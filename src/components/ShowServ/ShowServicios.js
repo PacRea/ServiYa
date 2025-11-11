@@ -55,41 +55,53 @@ function ShowServicios() {
   return (
     <div className="servicios-principal">
       <h2 className="titulo-servicios">Checa que necesitas</h2>
-      {showThis &&
-        showServ.map((p) => (
-          <div className="servicios-datos" key={p.id_servicio}>
-            <div className="header-servicios">
-              <h3 className="titulo-servicio">{p.nombre_servicio}</h3>
-              <p>{p.descripcion}</p>
-              <p>{p.categoria}</p>
-              <p>{p.ciudad}</p>
-              <p>{p.direccion}</p>
-              <p>{p.telefono}</p>
-              <p>{p.precio}</p>
-              <button
-                className="btn"
-                onClick={() => {
-                  setValores(
-                    p.id_proveedor,
-                    p.nombre_servicio,
-                    p.ciudad,
-                    p.direccion,
-                    p.telefono,
-                    p.id_servicio,
-                    p.nombre_servicio,
-                    p.descripcion,
-                    p.categoria,
-                    p.precio
-                  );
-                  mostrarInd();
-                  //oculLista();
-                }}
-              >
-                Ver mas
-              </button>
+      <div className="contenedor-servicios-ind">
+        {showThis &&
+          showServ.map((p) => (
+            <div className="servicios-datos" key={p.id_servicio}>
+              <div className="header-servicios">
+                <div className="titulo-servicio">
+                  <h3>{p.nombre_servicio}</h3>
+                </div>
+                <div className="nom-desc-prov">
+                  <p className="nombre-prov">{p.nombre}</p>
+                  <p>{p.descripcion}</p>
+                </div>
+                <div className="info-serv">
+                  <p>{p.categoria}</p>
+                  <p>{p.direccion}</p>
+                  <p>{p.ciudad}</p>
+                  <p>{p.telefono}</p>
+                  <p>{p.precio}</p>
+                </div>
+
+                <div className="btn-serv">
+                  <button className="btn">Contratar</button>
+                  <button
+                    className="btn"
+                    onClick={() => {
+                      setValores(
+                        p.id_proveedor,
+                        p.nombre_servicio,
+                        p.ciudad,
+                        p.direccion,
+                        p.telefono,
+                        p.id_servicio,
+                        p.nombre_servicio,
+                        p.descripcion,
+                        p.categoria,
+                        p.precio
+                      );
+                      mostrarInd();
+                    }}
+                  >
+                    Ver mas
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+      </div>
       {showBig && (
         <ServIndv
           id_prov={idProv}

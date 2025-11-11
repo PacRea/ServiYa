@@ -52,6 +52,7 @@ function App() {
             telefono={usuario.telefono}
             ciudad={usuario.ciudad}
             direccion={usuario.direccion}
+            ruta={usuario.img}
           />
         )}
       </main>

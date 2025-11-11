@@ -17,7 +17,7 @@ function ServIndv({
   return (
     <div className="modal">
       <div className="indiv-serv">
-          <div className="img-contenedor">
+          <div className="">
             <img alt="img-serv"></img>
           </div>
         <div className="serv-datos">

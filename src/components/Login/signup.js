@@ -10,6 +10,11 @@ function SignUp({ alCerrar }) {
   const [telCliente, setTelCliente] = useState("");
   const [ciudadCliente, setCiudadCliente] = useState("");
   const [dirCliente, setDirCliente] = useState("");
+  const [calleCliente, setCalleCliente] = useState("");
+  const [numCliente, setNumCliente] = useState("");
+  const [colCliente, setColCliente] = useState("");
+  const [cpCliente, setCPCliente] = useState("");
+  const [estadoCliente, setEstadoCliente] = useState("");
   const [error, setError] = useState("");
   const [tipo, setTipo] = useState("");
   const campos = [
@@ -34,10 +39,23 @@ function SignUp({ alCerrar }) {
       botonOtro.classList.remove("btn-activo");
     }
   };
+
+  useEffect(() => {
+    const dirCom = `${calleCliente} ${numCliente} ${colCliente} ${cpCliente} ${ciudadCliente} ${estadoCliente}`;
+    setDirCliente(dirCom.trim());
+  }, [
+    calleCliente,
+    numCliente,
+    colCliente,
+    cpCliente,
+    ciudadCliente,
+    estadoCliente,
+  ]);
+
   const crearCuenta = async (e) => {
     e.preventDefault();
     setError("");
-    try {
+    try {      
       if (campos.every((campo) => campo.trim() !== "")) {
         const response = await fetch(url, {
           method: "POST",
@@ -168,29 +186,76 @@ function SignUp({ alCerrar }) {
               onChange={(e) => setTelCliente(e.target.value)}
             />
           </div>
+          <div className="datos-dir">
+            <div className="form-datos">
+              <label className="label">Calle</label>
+              <input
+                type="text"
+                className="inputs"
+                placeholder="Calle"
+                id="calle"
+                value={calleCliente}
+                onChange={(e) => setCalleCliente(e.target.value)}
+              />
+            </div>
+            <div className="form-datos">
+              <label className="label">Numero</label>
+              <input
+                type="text"
+                className="inputs"
+                placeholder="Numero"
+                id="num"
+                value={numCliente}
+                onChange={(e) => setNumCliente(e.target.value)}
+              />
+            </div>
 
-          <div className="form-datos">
-            <label className="label">Ciudad</label>
-            <input
-              type="text"
-              className="inputs"
-              placeholder="Ciudad"
-              id="ciudad"
-              value={ciudadCliente}
-              onChange={(e) => setCiudadCliente(e.target.value)}
-            />
-          </div>
+            <div className="form-datos">
+              <label className="label">Colonia</label>
+              <input
+                type="text"
+                className="inputs"
+                placeholder="Colonia"
+                id="colonia"
+                value={colCliente}
+                onChange={(e) => setColCliente(e.target.value)}
+              />
+            </div>
 
-          <div className="form-datos">
-            <label className="label">Dirección</label>
-            <input
-              type="text"
-              className="inputs"
-              placeholder="Dirección"
-              id="direccion"
-              value={dirCliente}
-              onChange={(e) => setDirCliente(e.target.value)}
-            />
+            <div className="form-datos">
+              <label className="label">Codigo Postal</label>
+              <input
+                type="text"
+                className="inputs"
+                placeholder="Codigo Postal"
+                id="cp"
+                value={cpCliente}
+                onChange={(e) => setCPCliente(e.target.value)}
+              />
+            </div>
+
+            <div className="form-datos">
+              <label className="label">Ciudad</label>
+              <input
+                type="text"
+                className="inputs"
+                placeholder="Ciudad"
+                id="ciudad"
+                value={ciudadCliente}
+                onChange={(e) => setCiudadCliente(e.target.value)}
+              />
+            </div>
+            <div className="form-datos">
+              <label className="label">Estado</label>
+              <input
+                type="text"
+                className="inputs"
+                placeholder="Estado"
+                id="estado"
+                value={estadoCliente}
+                onChange={(e) => setEstadoCliente(e.target.value)}
+              />
+            </div>
           </div>
           <div className="crear-contenedor">
             <button className="btn crear-sign-btn" onClick={crearCuenta}>
