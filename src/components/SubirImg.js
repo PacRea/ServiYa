@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-function SubirImagen({ tipo, id }) {
+function SubirImagen({ tipoUser, idUser }) {
   const [imagen, setImagen] = useState(null);
-  const [secureUrl, setSecureUrl] = useState("");
   const urlApi = "http://serviya.local/api/img_user.php";
 
   const subir = async (e) => {
@@ -18,23 +17,27 @@ function SubirImagen({ tipo, id }) {
       const data = await res.json();
       if (data.status === "ok") {
         alert("Imagen subida con éxito");
-        setSecureUrl(data.url);
         console.log("URL:", data.url);
+
         const datos = {
-          tipo: tipo,
+          tipo: tipoUser,
           url: data.url,
-          id: id,
+          id: idUser,
         };
+        console.log(JSON.stringify(datos));
+
         const upImg = await fetch(urlApi, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(datos),
         });
+        const resDB = await upImg.json();
+        console.log("Respuesta de img_user.php:", resDB);
 
-        if(upImg.status === "ok"){
-          console.log("Imagen en la db");
+        if (resDB.status === "success") {
+          alert("Imagen guardada en la base de datos 🎉");
+        } else {
+          alert("Error al guardar en DB: " + resDB.message);
         }
       } else {
         alert("Error: " + data.mensaje);
@@ -43,15 +46,6 @@ function SubirImagen({ tipo, id }) {
       console.error(err);
     }
   };
-  const subirImgDB = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <div className="contenedor-datos">
       <form className="" onSubmit={subir}>

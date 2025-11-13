@@ -1,5 +1,4 @@
 import "../../App.css";
-
 function ServIndv({
   id_prov,
   nombre,

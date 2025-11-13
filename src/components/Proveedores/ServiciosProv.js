@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import ServIndv from "./ServIndv";
+import { useState, useEffect } from "react";
 import "../../App.css";
+import ModificarServicio from "./ModServ";
 
-function ShowServicios() {
+function ServiciosProveedor({ cerrar, id }) {
   const [showServ, setShowServ] = useState([]);
   const [idProv, setIdProv] = useState("");
   const [nombre, setNombre] = useState("");
@@ -14,12 +14,13 @@ function ShowServicios() {
   const [desc, setDesc] = useState("");
   const [cat, setCat] = useState("");
   const [precio, setPrecio] = useState("");
-  const [showBig, setShowBig] = useState(false);
+  const [showMod, setShowMod] = useState(false);
   const [showThis, setShowThis] = useState(true);
   const url = "http://serviya.local/api";
 
   useEffect(() => {
-    fetch(url + "/consultar_servicios.php")
+    const idProveedor = id;
+    fetch(`${url}/consultar_serv_prov.php?id_usuario=${idProveedor}`)
       .then((res) => res.json())
       .then((data) => setShowServ(data))
       .catch((err) => console.error("Error al obtener servicios", err));
@@ -47,14 +48,18 @@ function ShowServicios() {
     setCat(cat);
     setPrecio(precio);
   };
-  const mostrarInd = () => setShowBig(true);
-  const oculInd = () => setShowBig(false);
-  const oculLista = () => setShowThis(false);
-  const showLista = () => setShowThis(true);
-
+  const mostrarMod = () => {
+    setShowMod(true);
+  };
+  const ocultMod = () => {
+    setShowMod(false);
+  };
   return (
     <div className="servicios-principal">
-      <h2 className="titulo-servicios">Checa que necesitas</h2>
+      <h2 className="titulo-servicios">Mis servicios</h2>
+      <button className="btn" onClick={cerrar}>
+        Volver
+      </button>
       <div className="contenedor-servicios-ind">
         {showThis &&
           showServ.map((p) => (
@@ -75,7 +80,6 @@ function ShowServicios() {
               </div>
 
               <div className="btn-serv">
-                <button className="btn">Contratar</button>
                 <button
                   className="btn"
                   onClick={() => {
@@ -91,33 +95,32 @@ function ShowServicios() {
                       p.categoria,
                       p.precio
                     );
-                    mostrarInd();
+                    mostrarMod();
                   }}
                 >
-                  Ver mas
+                  Modificar
                 </button>
+                <button className="btn">Eliminar</button>
               </div>
-            </div>  
+            </div>
           ))}
+        {showMod && (
+          <ModificarServicio
+            cerrarIndv={ocultMod}
+            id_prov={idProv}
+            nombre={nombre}
+            ciudad={ciudad}
+            direccion={direccion}
+            telefono={telefono}
+            id_serv={idServ}
+            nom_serv={nomServ}
+            desc={desc}
+            cat={cat}
+            precio={precio}
+          />
+        )}
       </div>
-      {showBig && (
-        <ServIndv
-          id_prov={idProv}
-          nombre={nombre}
-          ciudad={ciudad}
-          direccion={direccion}
-          telefono={telefono}
-          id_serv={idServ}
-          nom_serv={nomServ}
-          desc={desc}
-          cat={cat}
-          precio={precio}
-          cerrarIndv={oculInd}
-          abrirList={showLista}
-        />
-      )}
     </div>
   );
 }
-
-export default ShowServicios;
+export default ServiciosProveedor;

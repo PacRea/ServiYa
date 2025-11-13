@@ -19,12 +19,30 @@ body {
   font-size: 16px; /* 1rem = 10px */
   font-family: "Archivo", sans-serif;
 }
+.contenedor-padre {
+  width: 95%;
+  max-width: 150rem;
+  margin: 0 auto;
+}
 .header {
   margin: 0 auto;
   background-color: var(--secundario);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 2.5rem;
+  display: flex;
+  justify-content: space-around;
+}
+@media (min-width: 768px) {
+  .header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 2.5rem;
+  }  
+}
+.bienvenida{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
 }
 .titulo-header {
   grid-column: 2 / 3;
@@ -56,11 +74,11 @@ body {
   margin: 1rem;
 }
 .btn {
-  padding: 1.2rem;
+  padding: 1rem;
   border: 2px solid var(--cuarto);
   background-color: var(--cuarto);
   color: #fff;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   border-radius: 0.8rem;
   cursor: pointer;
 }
@@ -182,22 +200,30 @@ body {
   background-color: var(--tercero);
   color: #fff;
 }
-.header-servicios {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 0.5fr 2fr 0.5fr;
-}
-.servicios-datos{
+.servicios-datos {
   background-color: var(--secundario);
   margin: 2rem;
   border-radius: 1rem;
   padding: 2rem;
-  min-width: 60rem;
-  max-width: 80rem;
-}
-.contenedor-servicios-ind{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 0.5fr 2fr 0.5fr;
+  height: 40rem;
+}
+.contenedor-servicios-ind {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  height: 10rem;
+}
+@media (min-width: 768px) {
+  .contenedor-servicios-ind {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1200px) {
+  .contenedor-servicios-ind {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 .titulo-servicio,
 .info-serv,
@@ -246,7 +272,7 @@ body {
 }
 .img-contenedor {
   background-color: #fff;
-  border: .2rem solid var(--tercero);
+  border: 0.2rem solid var(--tercero);
   display: grid;
   place-items: center;
   width: 12rem;
@@ -254,7 +280,7 @@ body {
   border-radius: 50%;
   overflow: hidden;
 }
-.img-sub img{
+.img-sub img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -272,8 +298,33 @@ body {
   display: grid;
   place-items: center;
 }
-.datos-dir{
+.datos-dir {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
+}
+.contenedor-datos-img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-img{
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.botones-contenedor-header{
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 1rem;
+}
+.btns-sesion{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.btns-sesion button{
+    font-size: 2rem;
+    width: 7rem;
+    text-align: center;
 }

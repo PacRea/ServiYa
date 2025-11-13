@@ -13,32 +13,33 @@ function ConfigUser({
   ciudad,
   direccion,
   ruta,
+  tarjeta,
+  exp,
+  cvv
 }) {
-  //const [url, setUrl] = useState(null);
   const [newNom, setNewNom] = useState("");
   const [newFecha, setNewFecha] = useState("");
   const [newCorreo, setNewCorreo] = useState("");
   const [newContra, setNewContra] = useState("");
   const [newTel, setNewTel] = useState("");
-  const [newCalle, setNewCalle] = useState("");
-  const [newNum, setNewNum] = useState("");
-  const [newCol, setNewCol] = useState("");
+  const [newDir, setNewDir] = useState("");
   const [newCiudad, setNewCiudad] = useState("");
-  const [newEstado, setNewEstado] = useState("");
-
+  const [newTarjeta, setNewTarjeta] = useState("");
+  const [newEXP, setNewEXP] = useState("");
+  const [newCVV, setNewCVV] = useState("");
   const [showCuenta, setShowCuenta] = useState(false);
   const [showPers, setShowPers] = useState(true);
   const [showPagos, setShowPagos] = useState(false);
   const [areImg, setAreImg] = useState(false);
-  const [showImgUp, setShowImgUp] = useState(false);
-  const setImgUser = () => {
-    setAreImg(true);
-  };
+  const [showImgUp, setShowImgUp] = useState(false); 
   useEffect(() => {
-    if (ruta !== null) {
-      setImgUser();
+    if (ruta && ruta.trim() !== "") {
+      setAreImg(true);
+    } 
+    else{
+      setAreImg(false);
     }
-  }, [areImg]);
+  }, [ruta]);
   return (
     <div className="modal">
       <div className="contenedor-datos-user">
@@ -81,6 +82,7 @@ function ConfigUser({
                 setShowCuenta(false);
                 setShowPagos(false);
                 setShowPers(true);
+                setShowImgUp(false);
               }}
             >
               Datos Personales
@@ -91,6 +93,7 @@ function ConfigUser({
                 setShowCuenta(true);
                 setShowPagos(false);
                 setShowPers(false);
+                setShowImgUp(false);
               }}
             >
               Cuenta
@@ -101,6 +104,7 @@ function ConfigUser({
                 setShowCuenta(false);
                 setShowPagos(true);
                 setShowPers(false);
+                setShowImgUp(false);
               }}
             >
               Pagos
@@ -120,6 +124,8 @@ function ConfigUser({
                 placeholder="Nombre Completo"
                 id="nombre"
                 defaultValue={nombre}
+                value={newNom}
+                onChange={(e) => setNewNom(e.target.value)}
               />
             </div>
 
@@ -131,6 +137,8 @@ function ConfigUser({
                 placeholder="AAAA-MM-DD"
                 id="fecha"
                 defaultValue={fecha}
+                value={newFecha}
+                onChange={(e) => setNewFecha(e.target.value)}
               />
             </div>
 
@@ -142,6 +150,8 @@ function ConfigUser({
                 placeholder="Ciudad"
                 id="ciudad"
                 defaultValue={ciudad}
+                value={newCiudad}
+                onChange={(e) => setNewCiudad(e.target.value)}
               />
             </div>
 
@@ -153,10 +163,12 @@ function ConfigUser({
                 placeholder="Dirección"
                 id="direccion"
                 defaultValue={direccion}
+                value={newDir}
+                onChange={(e) => setNewDir(e.target.value)}
               />
             </div>
             <div className="btn-upd">
-              <button>Actualizar Datos</button>
+              <button className="btn">Actualizar Datos</button>
             </div>
           </form>
         )}
@@ -170,6 +182,8 @@ function ConfigUser({
                 placeholder="Correo"
                 id="correo"
                 defaultValue={correo}
+                value={newCorreo}
+                onChange={(e) => setNewCorreo(e.target.value)}
               />
             </div>
 
@@ -192,11 +206,13 @@ function ConfigUser({
                 placeholder="Telefono"
                 id="telefono"
                 defaultValue={telefono}
+                value={newTel}
+                onChange={(e) => setNewTel(e.target.value)}
               />
             </div>
 
             <div className="btn-upd">
-              <button>Actualizar Datos</button>
+              <button className="btn">Actualizar Datos</button>
             </div>
           </form>
         )}
@@ -204,22 +220,43 @@ function ConfigUser({
           <form className="form-user">
             <div className="form-datos">
               <label className="label">Numero de Tarjeta</label>
-              <input type="number" className="inputs" id="numTar" />
+              <input
+                type="number"
+                className="inputs"
+                id="numTar"
+                defaultValue={tarjeta}
+                value={newTarjeta}
+                onChange={(e) => setNewTarjeta(e.target.value)}
+              />
             </div>
             <div className="form-datos">
               <label className="label">Expiración</label>
-              <input type="text" className="inputs" id="exp" />
+              <input
+                type="text"
+                className="inputs"
+                id="exp"
+                defaultValue={exp}
+                value={newEXP}
+                onChange={(e) => setNewEXP(e.target.value)}
+              />
             </div>
             <div className="form-datos">
               <label className="label">CVV</label>
-              <input type="password" className="inputs" id="cvv" />
+              <input
+                type="password"
+                className="inputs"
+                id="cvv"
+                defaultValue={cvv}
+                value={newCVV}
+                onChange={(e) => setNewCVV(e.target.value)}
+              />
             </div>
             <div className="btn-upd">
-              <button>Actualizar Datos</button>
+              <button className="btn">Actualizar Datos</button>
             </div>
           </form>
         )}
-        {showImgUp && <SubirImagen />}
+        {showImgUp && <SubirImagen idUser={id} tipoUser={tipo} />}
       </div>
     </div>
   );
