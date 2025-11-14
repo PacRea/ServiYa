@@ -14,6 +14,7 @@ function ServiciosProveedor({ cerrar, id }) {
   const [desc, setDesc] = useState("");
   const [cat, setCat] = useState("");
   const [precio, setPrecio] = useState("");
+  const [imgServ, setImgServ] = useState("");
   const [showMod, setShowMod] = useState(false);
   const [showThis, setShowThis] = useState(true);
   const url = "http://serviya.local/api";
@@ -100,7 +101,7 @@ function ServiciosProveedor({ cerrar, id }) {
                 >
                   Modificar
                 </button>
-                <button className="btn">Eliminar</button>
+                <button className="btn  btn-delete">Eliminar</button>
               </div>
             </div>
           ))}
@@ -117,6 +118,7 @@ function ServiciosProveedor({ cerrar, id }) {
             desc={desc}
             cat={cat}
             precio={precio}
+            img={imgServ}
           />
         )}
       </div>

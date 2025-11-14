@@ -230,6 +230,10 @@ body {
 .nom-desc-prov {
   text-align: center;
 }
+
+.img-servicio{
+  grid-row: 2 / 3;
+}
 .info-serv {
   grid-column: 2 / 3;
 }
@@ -327,4 +331,69 @@ body {
     font-size: 2rem;
     width: 7rem;
     text-align: center;
+}
+.contenedor-serv-mod{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+.form-mod-inputs{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 2fr;
+  place-items: center;
+  column-gap: 4rem;
+  row-gap: 4rem;
+  padding: 3rem;
+  background-color: var(--cuarto);
+  border-radius: 3rem;
+}
+.titulo-mod{
+  grid-column: 1 / 2;
+}
+.img-mod{
+  grid-row: 2 / 3;
+}
+.nom-desc-mod, .info-mod{
+  display: flex;
+  flex-direction: column;
+}
+.form-mod input{
+  margin: .5rem;
+  height: 3rem;
+  font-family: "Archivo", sans-serif;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.btns-mod button{
+  margin: 0 1rem;
+}
+.btn-delete{
+  transition: all 0.5s ease;
+}
+.btn-delete:hover{
+  background-color: #d40202;
+  transform: scale(1.2);
+  animation: borderBrilloRojo 2s infinite;
+}
+@keyframes borderBrilloRojo {
+  0%,
+  100% {
+    border-color: rgba(80, 16, 16, 0.623);
+    box-shadow: 0 0 5px rgba(80, 16, 16, 0.623);
+  }
+  50% {
+    border-color: #fa2d2d;
+    box-shadow: 0 0 18px #fa2d2d;
+  }
+}
+.img-mod-selecc{
+  cursor: pointer;
+}
+.img-add-mod{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }

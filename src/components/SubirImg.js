@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function SubirImagen({ tipoUser, idUser }) {
+function SubirImagen({ tipoOp, id}) {
   const [imagen, setImagen] = useState(null);
-  const urlApi = "http://serviya.local/api/img_user.php";
-
+  const urlUser = "http://serviya.local/api/img_user.php";
+  const urlSrv = "http://serviya.local/api/img_serv.php";
+  useEffect(() => {
+    alert(`Usted subira la imagena a ${tipoOp}`)
+  }, [tipoOp]);
   const subir = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -18,26 +21,45 @@ function SubirImagen({ tipoUser, idUser }) {
       if (data.status === "ok") {
         alert("Imagen subida con éxito");
         console.log("URL:", data.url);
+        
+        if (tipoOp === "servicio") {
+          const datoServ = {
+            url: data.url,
+            id_serv: id,
+          }
+          const upImg = await fetch(urlSrv, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(datoServ),
+          });
+          const resDB = await upImg.json();
+          console.log("Respuesta de img_user.php:", resDB);
 
-        const datos = {
-          tipo: tipoUser,
-          url: data.url,
-          id: idUser,
-        };
-        console.log(JSON.stringify(datos));
-
-        const upImg = await fetch(urlApi, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(datos),
-        });
-        const resDB = await upImg.json();
-        console.log("Respuesta de img_user.php:", resDB);
-
-        if (resDB.status === "success") {
-          alert("Imagen guardada en la base de datos 🎉");
+          if (resDB.status === "success") {
+            alert("Imagen guardada en la base de datos 🎉");
+          } else {
+            alert("Error al guardar en DB: " + resDB.message);
+          }
         } else {
-          alert("Error al guardar en DB: " + resDB.message);
+          const datos = {
+            tipo: tipoOp,
+            url: data.url,
+            id: id,
+          };
+
+          const upImg = await fetch(urlUser, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(datos),
+          });
+          const resDB = await upImg.json();
+          console.log("Respuesta de img_user.php:", resDB);
+
+          if (resDB.status === "success") {
+            alert("Imagen guardada en la base de datos 🎉");
+          } else {
+            alert("Error al guardar en DB: " + resDB.message);
+          }
         }
       } else {
         alert("Error: " + data.mensaje);

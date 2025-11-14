@@ -40,6 +40,7 @@ function ConfigUser({
       setAreImg(false);
     }
   }, [ruta]);
+  
   return (
     <div className="modal">
       <div className="contenedor-datos-user">
@@ -256,7 +257,7 @@ function ConfigUser({
             </div>
           </form>
         )}
-        {showImgUp && <SubirImagen idUser={id} tipoUser={tipo} />}
+        {showImgUp && <SubirImagen id={id} tipoOp={tipo} />}
       </div>
     </div>
   );

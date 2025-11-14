@@ -14,6 +14,7 @@ function ShowServicios() {
   const [desc, setDesc] = useState("");
   const [cat, setCat] = useState("");
   const [precio, setPrecio] = useState("");
+  const [img, setImg] = useState(null);
   const [showBig, setShowBig] = useState(false);
   const [showThis, setShowThis] = useState(true);
   const url = "http://serviya.local/api";
@@ -62,6 +63,9 @@ function ShowServicios() {
               <div className="titulo-servicio">
                 <h3>{p.nombre_servicio}</h3>
               </div>
+              <div className="img-servicio">
+                <img className="img-serv" alt="img" src={"#"}></img>
+                </div>
               <div className="nom-desc-prov">
                 <p className="nombre-prov">{p.nombre}</p>
                 <p>{p.descripcion}</p>
