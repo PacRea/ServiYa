@@ -17,7 +17,7 @@ function ServiciosProveedor({ cerrar, id }) {
   const [imgServ, setImgServ] = useState("");
   const [showMod, setShowMod] = useState(false);
   const [showThis, setShowThis] = useState(true);
-  const url = "http://DESKTOP-2H2VHH5/api";
+  const url = "http://serviya.local/api";
 
   useEffect(() => {
     const idProveedor = id;

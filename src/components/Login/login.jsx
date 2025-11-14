@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../../App.css";
 
 function Login({ alCerrarLogin, userLogin, usuarioDatos }) {
-  const url = "http://DESKTOP-2H2VHH5/api/login.php";
+  const url = "http://serviya.local/api/login.php";
   const [correoCliente, setCorreoCliente] = useState("");
   const [passCliente, setPassCliente] = useState("");
   const [error, setError] = useState("");

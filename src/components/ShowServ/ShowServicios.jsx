@@ -17,7 +17,7 @@ function ShowServicios() {
   const [img, setImg] = useState(null);
   const [showBig, setShowBig] = useState(false);
   const [showThis, setShowThis] = useState(true);
-  const url = "http://DESKTOP-2H2VHH5l/api";
+  const url = "http://serviya.local/api";
 
   useEffect(() => {
     fetch(url + "/consultar_servicios.php")

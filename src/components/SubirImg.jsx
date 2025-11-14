@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 function SubirImagen({ tipoOp, id}) {
   const [imagen, setImagen] = useState(null);
-  const urlUser = "http://DESKTOP-2H2VHH5/api/img_user.php";
-  const urlSrv = "http://DESKTOP-2H2VHH5/api/img_serv.php";
+  const urlUser = "http://serviya.local/api/img_user.php";
+  const urlSrv = "http://serviya.local/api/img_serv.php";
   useEffect(() => {
     alert(`Usted subira la imagena a ${tipoOp}`)
   }, [tipoOp]);
