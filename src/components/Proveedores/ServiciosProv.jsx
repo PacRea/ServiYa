@@ -17,7 +17,7 @@ function ServiciosProveedor({ cerrar, id }) {
   const [imgServ, setImgServ] = useState("");
   const [showMod, setShowMod] = useState(false);
   const [showThis, setShowThis] = useState(true);
-  const url = "http://serviya.local/api";
+  const url = "http://192.168.100.109/backend_proveedores/api";
 
   useEffect(() => {
     const idProveedor = id;
@@ -36,7 +36,8 @@ function ServiciosProveedor({ cerrar, id }) {
     nomserv,
     desc,
     cat,
-    precio
+    precio,
+    img
   ) => {
     setIdProv(idprov);
     setNombre(nombre);
@@ -48,6 +49,7 @@ function ServiciosProveedor({ cerrar, id }) {
     setDesc(desc);
     setCat(cat);
     setPrecio(precio);
+    setImgServ(img);
   };
   const mostrarMod = () => {
     setShowMod(true);
@@ -66,6 +68,9 @@ function ServiciosProveedor({ cerrar, id }) {
             <div className="servicios-datos" key={p.id_servicio}>
               <div className="titulo-servicio">
                 <h3>{p.nombre_servicio}</h3>
+              </div>
+              <div className="img-servicio">
+                <img className="img-serv" alt="img" src={p.ruta_imagen}></img>
               </div>
               <div className="nom-desc-prov">
                 <p className="nombre-prov">{p.nombre}</p>

@@ -1,4 +1,6 @@
 import "../../App.css";
+import { useEffect } from "react";
+
 function ServIndv({
   id_prov,
   nombre,
@@ -12,36 +14,32 @@ function ServIndv({
   precio,
   cerrarIndv,
   abrirList,
+  ruta_imagen,
 }) {
   return (
     <div className="modal">
       <div className="indiv-serv">
-          <div className="">
-            <img alt="img-serv"></img>
-          </div>
-        <div className="serv-datos">
-          <div>
-            <p>{id_prov}</p>
-            <p>{nombre}</p>
-          </div>
-          <div>
-            <p>{ciudad}</p>
-            <p>{direccion}</p>
-          </div>
-          <div>
-            <p>{telefono}</p>
-            <p>{id_serv}</p>
-          </div>
-          <div>
-            <p>{nom_serv}</p>
-            <p>{desc}</p>
-          </div>
-          <div>
-            <p>{cat}</p>
-            <p>{precio}</p>
-          </div>
+        <div className="img-serv-ind">
+          <img alt="img-serv" src={ruta_imagen}></img>
         </div>
-        <div>
+
+        <div className="info-ind">
+          <p>{nom_serv}</p>
+          <p>{desc}</p>
+        </div>
+        <div className="titulo-ind">
+          <p>{nombre}</p>
+        </div>
+        <div className="dir-ind">
+          <p>{ciudad}</p>
+          <p>{direccion}</p>
+
+          <p>{telefono}</p>
+          <p>{cat}</p>
+          <p>{precio}</p>
+        </div>
+        <div className="btn-ind-div">
+          <button className="btn btn-idv">Contratar</button>
           <button
             className="btn btn-idv"
             onClick={() => {

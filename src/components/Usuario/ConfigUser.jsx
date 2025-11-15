@@ -15,32 +15,30 @@ function ConfigUser({
   ruta,
   tarjeta,
   exp,
-  cvv
+  cvv,
 }) {
-  const [newNom, setNewNom] = useState("");
-  const [newFecha, setNewFecha] = useState("");
-  const [newCorreo, setNewCorreo] = useState("");
-  const [newContra, setNewContra] = useState("");
-  const [newTel, setNewTel] = useState("");
-  const [newDir, setNewDir] = useState("");
-  const [newCiudad, setNewCiudad] = useState("");
-  const [newTarjeta, setNewTarjeta] = useState("");
-  const [newEXP, setNewEXP] = useState("");
-  const [newCVV, setNewCVV] = useState("");
+  const [newNom, setNewNom] = useState(nombre);
+  const [newFecha, setNewFecha] = useState(fecha);
+  const [newCorreo, setNewCorreo] = useState(correo);
+  const [newTel, setNewTel] = useState(telefono);
+  const [newDir, setNewDir] = useState(direccion);
+  const [newCiudad, setNewCiudad] = useState(ciudad);
+  const [newTarjeta, setNewTarjeta] = useState(tarjeta);
+  const [newEXP, setNewEXP] = useState(exp);
+  const [newCVV, setNewCVV] = useState(cvv);
   const [showCuenta, setShowCuenta] = useState(false);
   const [showPers, setShowPers] = useState(true);
   const [showPagos, setShowPagos] = useState(false);
   const [areImg, setAreImg] = useState(false);
-  const [showImgUp, setShowImgUp] = useState(false); 
+  const [showImgUp, setShowImgUp] = useState(false);
   useEffect(() => {
     if (ruta && ruta.trim() !== "") {
       setAreImg(true);
-    } 
-    else{
+    } else {
       setAreImg(false);
     }
   }, [ruta]);
-  
+
   return (
     <div className="modal">
       <div className="contenedor-datos-user">
@@ -122,9 +120,7 @@ function ConfigUser({
               <input
                 type="text"
                 className="inputs"
-                placeholder="Nombre Completo"
                 id="nombre"
-                defaultValue={nombre}
                 value={newNom}
                 onChange={(e) => setNewNom(e.target.value)}
               />
@@ -135,9 +131,7 @@ function ConfigUser({
               <input
                 type="date"
                 className="inputs"
-                placeholder="AAAA-MM-DD"
                 id="fecha"
-                defaultValue={fecha}
                 value={newFecha}
                 onChange={(e) => setNewFecha(e.target.value)}
               />
@@ -148,9 +142,7 @@ function ConfigUser({
               <input
                 type="text"
                 className="inputs"
-                placeholder="Ciudad"
                 id="ciudad"
-                defaultValue={ciudad}
                 value={newCiudad}
                 onChange={(e) => setNewCiudad(e.target.value)}
               />
@@ -161,9 +153,7 @@ function ConfigUser({
               <input
                 type="text"
                 className="inputs"
-                placeholder="Dirección"
                 id="direccion"
-                defaultValue={direccion}
                 value={newDir}
                 onChange={(e) => setNewDir(e.target.value)}
               />
@@ -180,9 +170,7 @@ function ConfigUser({
               <input
                 type="text"
                 className="inputs"
-                placeholder="Correo"
                 id="correo"
-                defaultValue={correo}
                 value={newCorreo}
                 onChange={(e) => setNewCorreo(e.target.value)}
               />
@@ -193,9 +181,9 @@ function ConfigUser({
               <input
                 type="password"
                 className="inputs"
-                placeholder="Contrasena"
                 id="contrasena"
-                defaultValue={"passCliente"}
+                placeholder="Dejar en blanco para no cambiar"
+                
               />
             </div>
 
@@ -204,9 +192,7 @@ function ConfigUser({
               <input
                 type="number"
                 className="inputs"
-                placeholder="Telefono"
                 id="telefono"
-                defaultValue={telefono}
                 value={newTel}
                 onChange={(e) => setNewTel(e.target.value)}
               />
@@ -225,7 +211,6 @@ function ConfigUser({
                 type="number"
                 className="inputs"
                 id="numTar"
-                defaultValue={tarjeta}
                 value={newTarjeta}
                 onChange={(e) => setNewTarjeta(e.target.value)}
               />
@@ -236,7 +221,6 @@ function ConfigUser({
                 type="text"
                 className="inputs"
                 id="exp"
-                defaultValue={exp}
                 value={newEXP}
                 onChange={(e) => setNewEXP(e.target.value)}
               />
@@ -247,7 +231,6 @@ function ConfigUser({
                 type="password"
                 className="inputs"
                 id="cvv"
-                defaultValue={cvv}
                 value={newCVV}
                 onChange={(e) => setNewCVV(e.target.value)}
               />

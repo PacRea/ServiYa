@@ -53,7 +53,7 @@ const cerrarSesion = () => {
   const mostrarConfig = () => setConfigUser(true);
   const quitarConfig = () => setConfigUser(false);
   const imgUser = () => {
-    if (usuario && usuario.ruta) {
+    if (usuario && usuario.img) {
       setImg(true);
     } else {
       setImg(false);
@@ -89,7 +89,7 @@ const cerrarSesion = () => {
             <div className="img-contenedor">
               {img && (
                 <div className="img-sub">
-                  <img className="user-img" src={usuario.ruta}></img>
+                  <img className="user-img" src={usuario.img}></img>
                 </div>
               )}
               {!img && <FaRegUser />}
@@ -121,7 +121,7 @@ const cerrarSesion = () => {
             telefono={usuario.telefono}
             ciudad={usuario.ciudad}
             direccion={usuario.direccion}
-            ruta={usuario.ruta}
+            ruta={usuario.img}
             tarjeta={usuario.tarjeta}
             exp={usuario.exp}
             cvv={usuario.cvv}

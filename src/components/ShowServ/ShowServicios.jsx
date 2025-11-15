@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import ServIndv from "./ServIndv";
 import "../../App.css";
 
@@ -17,14 +17,14 @@ function ShowServicios() {
   const [img, setImg] = useState(null);
   const [showBig, setShowBig] = useState(false);
   const [showThis, setShowThis] = useState(true);
-  const url = "http://serviya.local/api";
+  const url = "http://192.168.100.109/backend_proveedores/api/consultar_servicios.php";
 
   useEffect(() => {
-    fetch(url + "/consultar_servicios.php")
+    fetch(url)
       .then((res) => res.json())
       .then((data) => setShowServ(data))
       .catch((err) => console.error("Error al obtener servicios", err));
-  }, []);
+  }, []); 
   const setValores = (
     idprov,
     nombre,
@@ -35,7 +35,8 @@ function ShowServicios() {
     nomserv,
     desc,
     cat,
-    precio
+    precio,
+    img
   ) => {
     setIdProv(idprov);
     setNombre(nombre);
@@ -47,6 +48,7 @@ function ShowServicios() {
     setDesc(desc);
     setCat(cat);
     setPrecio(precio);
+    setImg(img);
   };
   const mostrarInd = () => setShowBig(true);
   const oculInd = () => setShowBig(false);
@@ -64,7 +66,7 @@ function ShowServicios() {
                 <h3>{p.nombre_servicio}</h3>
               </div>
               <div className="img-servicio">
-                <img className="img-serv" alt="img" src={"#"}></img>
+                <img className="img-serv" alt="img" src={p.ruta_imagen}></img>
                 </div>
               <div className="nom-desc-prov">
                 <p className="nombre-prov">{p.nombre}</p>
@@ -85,7 +87,7 @@ function ShowServicios() {
                   onClick={() => {
                     setValores(
                       p.id_proveedor,
-                      p.nombre_servicio,
+                      p.nombre,
                       p.ciudad,
                       p.direccion,
                       p.telefono,
@@ -93,7 +95,8 @@ function ShowServicios() {
                       p.nombre_servicio,
                       p.descripcion,
                       p.categoria,
-                      p.precio
+                      p.precio,
+                      p.ruta_imagen
                     );
                     mostrarInd();
                   }}
@@ -118,6 +121,7 @@ function ShowServicios() {
           precio={precio}
           cerrarIndv={oculInd}
           abrirList={showLista}
+          ruta_imagen={img}
         />
       )}
     </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../../App.css";
 
 function SignUp({ alCerrar }) {
-  const url = "http://serviya.local/api/signup.php";
+  const url = "http://192.168.100.109/backend_proveedores/api/signup.php";
   const [nomCliente, setNomCliente] = useState("");
   const [fechaCliente, setFechaCliente] = useState("");
   const [correoCliente, setCorreoCliente] = useState("");

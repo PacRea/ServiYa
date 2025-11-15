@@ -18,7 +18,7 @@ function ModificarServicio({
   abrirList,
 }) {
   const [showImgAdd, setShowImgAdd] = useState(false);
-  const tipoOp = "servicio";
+  const tipo = "servicio";
   const mostrarWindImg = () => setShowImgAdd(true);
   const ocultWindImg = () => setShowImgAdd(false);
 
@@ -27,12 +27,16 @@ function ModificarServicio({
       <div className="contenido-modal contenido-mod">
         <div className="contenedor-serv-mod">
           <h2>Mi Servicio</h2>
+
           <form className="form-mod">
             {!showImgAdd && (
+              
               <div className="form-mod-inputs">
+
                 <div className="titulo_mod">
                   <input defaultValue={nom_serv}></input>
                 </div>
+
                 <div className="img-mod">
                   <img
                     src={img}
@@ -41,10 +45,12 @@ function ModificarServicio({
                     onClick={mostrarWindImg}
                   ></img>
                 </div>
+
                 <div className="nom-desc-mod">
                   <input defaultValue={nombre}></input>
                   <input defaultValue={desc}></input>
                 </div>
+
                 <div className="info-mod">
                   <input defaultValue={ciudad}></input>
                   <input defaultValue={direccion}></input>
@@ -52,20 +58,21 @@ function ModificarServicio({
                   <input defaultValue={cat}></input>
                   <input defaultValue={precio}></input>
                 </div>
+
               </div>
             )}
             {showImgAdd && (
               <div className="img-add-mod">
-                <SubirImagen id={id_serv} tipoOp={tipoOp} />
-                <button onClick={ocultWindImg}>Cerrar</button>
+                <SubirImagen id={id_serv} tipoOp="servicio" />
+                <button type="button" className="btn" onClick={ocultWindImg}>Volver</button>
               </div>
             )}
           </form>
           <div className="btns-mod">
-            <button type="submit" className="btn">
+            <button className="btn" type="button">
               Actualizar datos
             </button>
-            <button className="btn" onClick={cerrarIndv}>
+            <button className="btn" type="button" onClick={cerrarIndv}>
               Cerrar
             </button>
           </div>
